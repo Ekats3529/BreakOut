@@ -9,11 +9,11 @@ namespace BL
     public class GamesBL : IGamesBL
     {
 
-        private IGamesBL _dal;
+        private IGamesDal _dal;
 
         public GamesBL(IGamesDal dal)
         {
-            //_dal = dal;
+            _dal = dal;
         }
 
         public SingleGame GetById(int id)

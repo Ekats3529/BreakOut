@@ -14,6 +14,7 @@ namespace ORMDal
             try
             {
                 var user = context.Users.FirstOrDefault(item => item.Name == login);
+                context.SaveChanges();
 
                 if (user == null)
                 {

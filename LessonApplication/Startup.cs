@@ -47,6 +47,7 @@ namespace LessonApplication
 
             services.AddTransient<IUsersDal, OrmUsersDal>();
             services.AddTransient<IUsersBL, UsersBL>();
+            services.AddTransient<IGamesBL, GamesBL>();
 
             // создает один экземпляр в рамках http запроса
             //services.AddScoped<IUsersDal, UsersDal>();
