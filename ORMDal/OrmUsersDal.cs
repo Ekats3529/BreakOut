@@ -13,7 +13,7 @@ namespace ORMDal
             var context = new DefaultDbContext();
             try
             {
-                var user = context.Users.FirstOrDefault(item => item.Name == login);
+                var user = context.Users.FirstOrDefault(item => item.Login == login);
 
                 if (user == null)
                 {
@@ -58,6 +58,26 @@ namespace ORMDal
                 context.Dispose();
             }
 
+        }
+
+        public void AddUser(Entities.User user)
+        {
+            var context = new DefaultDbContext();
+            try
+            {
+                context.Users.Add(new User()
+                {
+                    Name = user.Name,
+                    Password = user.Password,
+                    Login = user.Login,
+                    RegistrationDate = user.RegistrationDate
+                });
+                context.SaveChanges();
+            }
+            finally
+            {
+                context.Dispose();
+            }
         }
     }
 }

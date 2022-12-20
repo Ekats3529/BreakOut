@@ -23,5 +23,11 @@ namespace BL
         {
             return _dal.GetById(id);
         }
+
+        public void AddUser(User user)
+        {
+            _dal.AddUser(user);
+        }
+
     }
 }

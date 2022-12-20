@@ -1,8 +1,21 @@
-﻿@model  LessonApplication.Models.Users.LoginModel
+﻿@model  LessonApplication.Models.Users.RegistrationModel
 
 
-Введите логин и пароль
-<form asp-controller="Users" asp-action="Login" asp-antiforgery="true" method="post">
+<form asp-controller="Users" asp-action="Registration" asp-antiforgery="true" method="post">
+    
+    <div class="input-group mb-3">
+        <input asp-for="Name" type="text" class="form-control" placeholder="Имя">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+
     <div class="input-group mb-3">
         <input asp-for="Login" type="text" class="form-control" placeholder="Логин">
         <div class="input-group-append">
@@ -14,6 +27,7 @@
             <span asp-validation-for="Login" class="text-danger"></span>
         </div>
     </div>
+
     <div class="input-group mb-3">
         <input asp-for="Password" type="password" class="form-control" placeholder="Пароль">
         <div class="input-group-append">
@@ -25,14 +39,11 @@
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
     </div>
+
     <div class="row">
-        
-        <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Войти</button>
-        </div>
 
         <div class="col-3">
-            <a asp-area="" asp-controller="Users" asp-action="Registration" class="btn btn-primary btn-block">Регистрация</a>
+            <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
         </div>
 
     </div>

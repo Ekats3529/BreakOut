@@ -19,42 +19,40 @@ namespace ORMDal
         {
         }
 
-        public virtual DbSet<Games> Games { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<SingleGame> Games { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=LessonApplication;Integrated security=True");
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=DB_GAME;Integrated security=True");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Games>(entity =>
+            modelBuilder.Entity<SingleGame>(entity =>
             {
-                entity.HasOne(d => d.User)
+                entity.Property(e => e.PlayingDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Users)
                     .WithMany(p => p.Games)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Games_UserId");
             });
 
-            modelBuilder.Entity<Orders>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Login).IsRequired();
 
                 entity.Property(e => e.Name).IsRequired();
-            });
 
-            modelBuilder.Entity<Users>(entity =>
-            {
-                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.Password).IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);

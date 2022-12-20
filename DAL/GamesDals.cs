@@ -10,13 +10,23 @@ namespace DAL
     public class GamesDal : IGamesDal
     {
         private List<SingleGame> games = new List<SingleGame>() {
-            new SingleGame() { Id = 1, PlayingDate = new DateTime(2022, 12, 12), UserId = 1, Score = 0},
-            new SingleGame() { Id = 2, PlayingDate = new DateTime(2022, 12, 12), UserId = 2, Score = 100}
         };
 
         public SingleGame GetById(int id)
         {
             return games.FirstOrDefault(item => item.Id == id);
         }
+
+
+        public SingleGame GetByUserId(int UserId)
+        {
+            return games.FirstOrDefault(item => item.UserId == UserId);
+        }
+
+        public void AddGame(SingleGame game)
+        {
+            games.Add(game);
+        }
+
     }
 }

@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Game";
+﻿
+@{
+    ViewData["Title"] = "Scoreboard";
     Layout = "_LayoutCustom";
 }
 <!DOCTYPE html>
@@ -9,17 +10,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Scoreboard</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
-    <title>BREAKOUT</title>
-    <style>* 
-    { padding: 0; margin: 0; } 
-    canvas { background: rgb(236, 218, 218); display: flex; margin: 0 auto; }
-    body {
-          background: rgb(18, 15, 20);
-        }
-    </style>
+    
+ 
 </head>
 <body>
 
@@ -44,23 +39,9 @@
             </div>
         </nav>
     </header>
-    <div class="text-right">
-    <button type="submit" class="btn btn-primary center-block">Сохранить игру</button>
-    </div>
 
 <canvas id="myCanvas" width="720" height="480"></canvas>
 
-@*<div class="text-right">
-    <button type="submit" class="btn btn-primary center-block">Сохранить игру</button>
-</div>*@
-
-    
-
-
-
-<script src="~/js/gamescript.js">
-
-</script>
 
 
 </body>

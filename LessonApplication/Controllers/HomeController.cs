@@ -1,4 +1,7 @@
-﻿using LessonApplication.Models;
+﻿using Interfaces;
+using LessonApplication.Models;
+using Entities;
+using LessonApplication.Models.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,27 +16,37 @@ namespace LessonApplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IUsersBL _usersBL;
+        private IGamesBL _gamesBL;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUsersBL usersBL, IGamesBL gamesBL)
         {
             _logger = logger;
+            _usersBL = usersBL;
+            _gamesBL = gamesBL;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public IActionResult Index(int id, string name)
         {
             TempData["Success"] = "Success";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+            }
+
             return View("Index");
         }
 
         public IActionResult Privacy()
         {
-            return Json(new { Id = 1, Name = "Andrey" });
+            return Json(new { Id = 3529, Name = "Ekaterina" });
         }
 
-        public IActionResult Game()
+        public IActionResult Scoreboard()
         {
-            return View("Game");
+            return View("Scoreboard");
         }
 
         public IActionResult Info() {
@@ -45,5 +58,13 @@ namespace LessonApplication.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Game()
+        {
+
+            return View("Game");
+
+        }  
+
     }
 }

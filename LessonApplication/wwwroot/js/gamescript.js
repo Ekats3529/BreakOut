@@ -2,7 +2,7 @@
 var ctx = canvas.getContext("2d");
 
 const backGround = new Image();
-backGround.src = '~/img/background.png';
+backGround.src = 'https://localhost:5001/img/background.png';
 
 var ballRadius = 12;
 var x = canvas.width / 2;
@@ -229,5 +229,6 @@ function draw() {
     y += dy;
     requestAnimationFrame(draw);
 }
+
 
 draw();

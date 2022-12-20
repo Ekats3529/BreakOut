@@ -11,5 +11,7 @@ namespace ORMDal
         public string Login { get; set; }
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
+
+        public virtual ICollection<SingleGame> Games { get; set; }
     }
 }

@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace LessonApplication
 {
@@ -29,6 +30,12 @@ namespace LessonApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // получаем строку подключения из файла конфигурации
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            // добавляем контекст ApplicationContext в качестве сервиса в приложение
+            services.AddDbContext<DefaultDbContext>(options =>
+                options.UseSqlServer(connection));
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
                 options =>
                 {
@@ -47,6 +54,9 @@ namespace LessonApplication
 
             services.AddTransient<IUsersDal, OrmUsersDal>();
             services.AddTransient<IUsersBL, UsersBL>();
+
+            services.AddTransient<IGamesDal, OrmGamesDal>();
+            services.AddTransient<IGamesBL, GamesBL>();
 
             // создает один экземпляр в рамках http запроса
             //services.AddScoped<IUsersDal, UsersDal>();
@@ -81,7 +91,7 @@ namespace LessonApplication
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Users}/{action=Login}/{id?}");
             });
         }
     }

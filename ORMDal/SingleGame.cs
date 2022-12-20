@@ -7,12 +7,13 @@ using System.Collections.Generic;
 
 namespace ORMDal
 {
-    public partial class Games
+    public partial class SingleGame
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
         public int Score { get; set; }
+        public int? UserId { get; set; }
+        public DateTime? PlayingDate { get; set; }
 
-        public virtual Users User { get; set; }
+        public virtual User Users { get; set; }
     }
 }
