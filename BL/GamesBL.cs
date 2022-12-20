@@ -9,7 +9,7 @@ namespace BL
     public class GamesBL : IGamesBL
     {
 
-        private readonly IGamesDal _dal;
+        private IGamesBL _dal;
 
         public GamesBL(IGamesDal dal)
         {

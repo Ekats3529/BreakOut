@@ -13,7 +13,7 @@ namespace ORMDal
             var context = new DefaultDbContext();
             try
             {
-                var user = context.Users.FirstOrDefault(item => item.Login == login);
+                var user = context.Users.FirstOrDefault(item => item.Name == login);
 
                 if (user == null)
                 {

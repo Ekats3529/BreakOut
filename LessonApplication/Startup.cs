@@ -54,6 +54,7 @@ namespace LessonApplication
 
             services.AddTransient<IUsersDal, OrmUsersDal>();
             services.AddTransient<IUsersBL, UsersBL>();
+            services.AddTransient<IGamesBL, GamesBL>();
 
             services.AddTransient<IGamesDal, OrmGamesDal>();
             services.AddTransient<IGamesBL, GamesBL>();
